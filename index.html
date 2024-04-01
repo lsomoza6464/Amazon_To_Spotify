@@ -32,8 +32,8 @@
                 src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png"
                 width="156" height="32" />
          </a>
-         <script type="text/javascript">
-            document.getElementById('LoginWithAmazon').onclick = function() {
+         <!--<script type="text/javascript">
+            /*document.getElementById('LoginWithAmazon').onclick = function() {
                 options = {}
                 options.scope = 'profile';
                 options.pkce = true;
@@ -44,6 +44,7 @@
                 amazon.Login.authorize(options,
                     //"http://localhost:5000/callback");
                     'https://www.google.com/handle_login.php');
+                    */
                 
                 /*amazon.Login.authorize(options, function(response) {
                     if ( response.error ) {
@@ -58,10 +59,37 @@
                             alert('Access Token: ' + response.access_token);
                     });
                 });*/
-                return false;
+                /*return false;
 
                 
+            };*/
+        </script>-->
+        <h1>Login with Amazon</h1>
+      
+        <script>
+            
+          document.getElementById('LoginWithAmazon').onclick = function() {
+            // Define your client ID and redirect URI
+            const clientId = 'amzn1.application-oa2-client.200c6fc078ff405180ea6b4e50710025';
+            const redirectUri = 'https://www.google.com';
+      
+            // Define the authentication endpoint
+            const authEndpoint = 'https://www.amazon.com/ap/oa';
+      
+            // Define the parameters for the authentication request
+            const params = {
+              client_id: clientId,
+              redirect_uri: redirectUri,
+              response_type: 'code',
+              scope: 'profile', // Specify the scopes you need
             };
+      
+            // Construct the authentication URL
+            const authUrl = `${authEndpoint}?${new URLSearchParams(params).toString()}`;
+      
+            // Redirect the user to the authentication URL
+            window.location.href = authUrl;
+          }
         </script>
         <!---<button id="amazonLoginButton" onclick()="amazon_login()" value="Request Authorization">log into your spotify music account</button>--->
     </div>
