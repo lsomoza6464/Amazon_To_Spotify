@@ -29,9 +29,9 @@
         <textarea id="mainTitle">Welcome to Amazon to Spotify MP3</textarea>
         <a href id="LoginWithAmazon">
             <img border="0" alt="Login with Amazon"
-                src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png"
+            src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png"
                 width="156" height="32" />
-         </a>
+        </a>
          <!--<script type="text/javascript">
             /*document.getElementById('LoginWithAmazon').onclick = function() {
                 options = {}
@@ -67,12 +67,17 @@
         <h1>Login with Amazon</h1>
       
         <script>
+            document.getElementById('LoginWithAmazon').onclick = function(event) {
+                event.preventDefault(); // Prevent default button behavior
+                authenticateWithAmazon();
+            }
             
-          document.getElementById('LoginWithAmazon').onclick = function() {
+          function authenticateWithAmazon() {
             // Define your client ID and redirect URI
             const clientId = 'amzn1.application-oa2-client.200c6fc078ff405180ea6b4e50710025';
-            const redirectUri = 'https://www.google.com';
-      
+            const redirectUri = 'https://lsomoza6464.github.io/Amazon_To_Spotify/callback';
+            //const redirectUri = 'https://www.google.com'
+
             // Define the authentication endpoint
             const authEndpoint = 'https://www.amazon.com/ap/oa';
       
@@ -88,7 +93,9 @@
             const authUrl = `${authEndpoint}?${new URLSearchParams(params).toString()}`;
       
             // Redirect the user to the authentication URL
+            console.log(authUrl)
             window.location.href = authUrl;
+            
           }
         </script>
         <!---<button id="amazonLoginButton" onclick()="amazon_login()" value="Request Authorization">log into your spotify music account</button>--->
