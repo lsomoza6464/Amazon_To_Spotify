@@ -4,6 +4,7 @@
     <script>
         async function exchangeCodeForToken(code){
             // Redirect the user to the authentication URL
+            const clientId = 'amzn1.application-oa2-client.200c6fc078ff405180ea6b4e50710025';
             const tokenEndpoint = 'https://api.amazon.com/auth/o2/token';
             const clientSecret = '${{ secrets.AMAZON_CLIENT_SECRET }}';
             const params = new URLSearchParams({
