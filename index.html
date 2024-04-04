@@ -72,31 +72,28 @@
                 authenticateWithAmazon();
             }
             
-          function authenticateWithAmazon() {
-            // Define your client ID and redirect URI
-            const clientId = 'amzn1.application-oa2-client.200c6fc078ff405180ea6b4e50710025';
-            const redirectUri = 'https://lsomoza6464.github.io/Amazon_To_Spotify/callback';
-            //const redirectUri = 'https://www.google.com'
+            function authenticateWithAmazon() {
+                // Define your client ID and redirect URI
+                const clientId = 'amzn1.application-oa2-client.200c6fc078ff405180ea6b4e50710025';
+                const redirectUri = 'https://lsomoza6464.github.io/Amazon_To_Spotify/callback';
+                //const redirectUri = 'https://www.google.com'
 
-            // Define the authentication endpoint
-            const authEndpoint = 'https://www.amazon.com/ap/oa';
-      
-            // Define the parameters for the authentication request
-            const params = {
-              client_id: clientId,
-              redirect_uri: redirectUri,
-              response_type: 'code',
-              scope: 'profile', // Specify the scopes you need
-            };
-      
-            // Construct the authentication URL
-            const authUrl = `${authEndpoint}?${new URLSearchParams(params).toString()}`;
-      
-            // Redirect the user to the authentication URL
-            //console.log(authUrl)
-            window.location.href = authUrl;
-            
-          }
+                // Define the authentication endpoint
+                const authEndpoint = 'https://www.amazon.com/ap/oa';
+        
+                // Define the parameters for the authentication request
+                const authParams = {
+                client_id: clientId,
+                redirect_uri: redirectUri,
+                response_type: 'code',
+                scope: 'profile', // Specify the scopes you need
+                };
+        
+                // Construct the authentication URL
+                const authUrl = `${authEndpoint}?${new URLSearchParams(authParams).toString()}`;
+        
+                window.location.href = authUrl;
+            }
         </script>
         <!---<button id="amazonLoginButton" onclick()="amazon_login()" value="Request Authorization">log into your spotify music account</button>--->
     </div>
