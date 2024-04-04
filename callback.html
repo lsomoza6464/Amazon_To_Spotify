@@ -1,1 +1,43 @@
-<h1>Login with Amazon</h1>
+<h1>Choose a Playlist:</h1>
+
+<body>
+    <script>
+        async function exchangeCodeForToken(code){
+            // Redirect the user to the authentication URL
+            const tokenEndpoint = 'https://api.amazon.com/auth/o2/token';
+            const clientSecret = '${{ secrets.AMAZON_CLIENT_SECRET }}';
+            const params = new URLSearchParams({
+                grant_type: 'authorization_code',
+                code: code,
+                client_id: clientId,
+                client_secret: clientSecret,
+                redirect_uri: redirectUri
+            });
+
+            try  {
+                const response = await fetch(tokenEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Access Token:', data.access_token);
+                } else {
+                    console.error('Failed to exchange code for token:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error exchanging code for token:', error.message);
+            }
+        }
+        console.log('here')
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        if (code) {
+            exchangeCodeForToken(code);
+        }
+    </script>
+
+</body>
